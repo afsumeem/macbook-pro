@@ -14,7 +14,7 @@ const grandTotal = document.getElementById('grand-total');
 function totalCost() {
     total.innerText = parseFloat(initialPrice.innerText) + parseFloat(memoryCost.innerText) + parseFloat(storageCost.innerText) + parseFloat(deliveryCost.innerText);
     grandTotal.innerText = total.innerText;
-};
+}
 
 //check promo code 
 function promoCode() {
@@ -63,5 +63,7 @@ document.getElementById('apply-button').addEventListener('click', function () {
     if (promoCode() == 'stevekaku') {
         const newTotal = parseFloat(total.innerText * 0.8);
         grandTotal.innerText = newTotal;
+    } else {
+        console.log('invalid promo code');
     }
 });
