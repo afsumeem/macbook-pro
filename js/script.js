@@ -1,10 +1,5 @@
-const firstMemoryButton = document.getElementById('8gb-memory-button');
-const secondMemoryButton = document.getElementById('16gb-memory-button');
-const firstStorageButton = document.getElementById('256-storage-button');
-const secondStorageButton = document.getElementById('512-storage-button');
-const thirdStorageButton = document.getElementById('1tb-storage-button');
-const firstDeliveryButton = document.getElementById('free-delivery-button');
-const secondDeliveryButton = document.getElementById('charged-delivery-button');
+//variable declare
+
 const memoryCost = document.getElementById('extra-memory-cost');
 const storageCost = document.getElementById('extra-storage-cost');
 const deliveryCost = document.getElementById('delivery-cost');
@@ -13,8 +8,8 @@ const initialPrice = document.getElementById('initial-price');
 const grandTotal = document.getElementById('grand-total');
 
 
-//calculate total cost and update grand total
 
+//calculate total cost and update grand total
 
 function totalCost() {
     total.innerText = parseFloat(initialPrice.innerText) + parseFloat(memoryCost.innerText) + parseFloat(storageCost.innerText) + parseFloat(deliveryCost.innerText);
@@ -22,38 +17,51 @@ function totalCost() {
 };
 
 //check promo code 
-document.getElementById('apply-button').addEventListener('click', function () {
-    document.getElementById('code-input')
-})
+function promoCode() {
+    const codeField = document.getElementById('code-input');
+    let code = codeField.value;
+    codeField.value = '';
+    return code;
+}
 
-
-firstMemoryButton.addEventListener('click', function () {
+// handle buttons for memory size
+document.getElementById('8gb-memory-button').addEventListener('click', function () {
     memoryCost.innerText = 0;
     totalCost();
 });
-secondMemoryButton.addEventListener('click', function () {
+document.getElementById('16gb-memory-button').addEventListener('click', function () {
     memoryCost.innerText = 180;
     totalCost();
 });
-firstStorageButton.addEventListener('click', function () {
+
+//handle buttons for storage
+document.getElementById('256-storage-button').addEventListener('click', function () {
     storageCost.innerText = 0;
     totalCost();
 });
-secondStorageButton.addEventListener('click', function () {
+document.getElementById('512-storage-button').addEventListener('click', function () {
     storageCost.innerText = 100;
     totalCost();
 });
-thirdStorageButton.addEventListener('click', function () {
+document.getElementById('1tb-storage-button').addEventListener('click', function () {
     storageCost.innerText = 180;
     totalCost();
 });
-firstDeliveryButton.addEventListener('click', function () {
+
+// handle buttons for delivery cost
+document.getElementById('free-delivery-button').addEventListener('click', function () {
     deliveryCost.innerText = 0;
     totalCost();
 });
-secondDeliveryButton.addEventListener('click', function () {
+document.getElementById('charged-delivery-button').addEventListener('click', function () {
     deliveryCost.innerText = 20;
     totalCost();
-
 });
 
+//promo code
+document.getElementById('apply-button').addEventListener('click', function () {
+    if (promoCode() == 'stevekaku') {
+        const newTotal = parseFloat(total.innerText * 0.8);
+        grandTotal.innerText = newTotal;
+    }
+});
